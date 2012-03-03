@@ -41,7 +41,7 @@ return array(
 	 *
 	 * Set this to false or remove if you using mod_rewrite.
 	 */
-	'index_file'  => 'index.php',
+	'index_file'  => '',
 
 	'profiling'  => false,
 
@@ -71,7 +71,7 @@ return array(
 	 */
 	'language'           => 'en', // Default language
 	'language_fallback'  => 'en', // Fallback language when file isn't available for default language
-	'locale'             => 'en_US', // PHP set_locale() setting, null to not set
+	'locale'             => 'en_US.UTF-8', // PHP set_locale() setting, null to not set
 
 	'encoding'  => 'UTF-8',
 
@@ -81,8 +81,8 @@ return array(
 	 * server_gmt_offset	in seconds the server offset from gmt timestamp when time() is used
 	 * default_timezone		optional, if you want to change the server's default timezone
 	 */
-	'server_gmt_offset'  => 0,
-	'default_timezone'   => 'UTC',
+	'server_gmt_offset'  => -6,
+	'default_timezone'   => 'America/Chicago',
 
 	/**
 	 * Logging Threshold.  Can be set to any of the following:
@@ -103,7 +103,7 @@ return array(
 	 */
 	'security' => array(
 		'csrf_autoload'    => false,
-		'csrf_token_key'   => 'fuel_csrf_token',
+		'csrf_token_key'   => 'phoenix_csrf_token',
 		'csrf_expiration'  => 0,
 		'uri_filter'       => array('htmlentities'),
 
@@ -113,7 +113,9 @@ return array(
 		 * WARNING: Using xss_clean will cause a performance hit.  How much is
 		 * dependant on how much input data there is.
 		 */
-		'input_filter'  => array(),
+		'input_filter'  => array(
+			'xss_clean'
+		),
 
 		/**
 		 * This output filter can be any normal PHP function as well as 'xss_clean'
@@ -164,7 +166,7 @@ return array(
 	 *      array(APPPATH.'modules'.DS)
 	 */
 	'module_paths' => array(
-		//APPPATH.'modules'.DS
+		APPPATH.'modules'.DS
 	),
 
 
@@ -185,7 +187,10 @@ return array(
 		 * );
 		 */
 		'packages'  => array(
-			//'orm',
+			'orm',
+			'sentry',
+			'less',
+			'parser'
 		),
 
 		/**
@@ -211,7 +216,9 @@ return array(
 		 * add it like 'session' => 'auth'.
 		 * If you don't want the config in a group use null as groupname.
 		 */
-		'config'  => array(),
+		'config'  => array(
+			'phoenix'
+		),
 
 		/**
 		 * Language files to autoload
